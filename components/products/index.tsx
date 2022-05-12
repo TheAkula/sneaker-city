@@ -13,7 +13,12 @@ export const Products: React.FC<ProductsProps> = ({ products }) => {
 
   return (
     <StyledProducts>
-      <h2>{router.query.category || "All products"}</h2>
+      <h2>
+        {router.query.category
+          ? router.query.category[0].toUpperCase() +
+            router.query.category.slice(1)
+          : "All products"}
+      </h2>
       <ProductsGrid>
         {products.map((prod) => {
           return (

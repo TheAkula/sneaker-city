@@ -5,8 +5,10 @@ import {
   selectProducts,
   fetchProducts,
   setLoading,
+  selectLoading,
 } from "../../redux/reducers/productsReducer";
 import { Header } from "../header";
+import { LoadingBackdrop } from "../loadingBackdrop";
 import { Products } from "../products";
 import { Settings } from "../settings";
 import { StyledMainLayout } from "./styled";
@@ -21,6 +23,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   category,
 }) => {
   const products = useAppSelector(selectProducts);
+  const loading = useAppSelector(selectLoading);
 
   const dispatch = useAppDispatch();
 
@@ -30,17 +33,19 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   }, [dispatch, category]);
 
   return (
-    <div>
-      <Header categories={categories} />
-      <main>
-        <div className="container">
-          <StyledMainLayout>
-            <Settings />
-
-            {products.length ? <Products products={products} /> : null}
-          </StyledMainLayout>
-        </div>
-      </main>
-    </div>
+    <>
+      <div>
+        <Header categories={categories} />
+        <main>
+          <div className="container">
+            <StyledMainLayout>
+              <Settings />
+              {products.length ? <Products products={products} /> : null}
+            </StyledMainLayout>
+          </div>
+        </main>
+      </div>
+      {loading && <LoadingBackdrop />}
+    </>
   );
 };
