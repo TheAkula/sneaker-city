@@ -16,7 +16,9 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
   return (
     <li>
       <Link href={path} passHref>
-        <StyledNavigationItem active={router.asPath === path}>
+        <StyledNavigationItem
+          active={router.asPath.replace(/%20/g, " ") === path}
+        >
           {children}
         </StyledNavigationItem>
       </Link>
