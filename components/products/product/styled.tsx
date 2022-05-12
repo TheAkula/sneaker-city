@@ -4,7 +4,6 @@ import { baseTheme } from "../../../styles/baseTheme";
 export const StyledProduct = styled.a`
   display: block;
   width: 310px;
-  height: 414px;
   overflow: hidden;
   text-decoration: none;
 

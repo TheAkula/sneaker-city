@@ -13,4 +13,5 @@ export const ProductsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, 310px);
   row-gap: 64px;
   column-gap: 24px;
+  padding-bottom: 92px;
 `;

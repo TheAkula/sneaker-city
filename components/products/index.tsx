@@ -2,6 +2,7 @@ import { ProductType } from "../../redux/reducers/productsReducer";
 import { StyledProducts, ProductsGrid } from "./styled";
 import { Product } from "./product";
 import { useRouter } from "next/router";
+import { Footer } from "../footer";
 
 interface ProductsProps {
   products: ProductType[];
@@ -26,6 +27,8 @@ export const Products: React.FC<ProductsProps> = ({ products }) => {
           );
         })}
       </ProductsGrid>
+
+      <Footer />
     </StyledProducts>
   );
 };
