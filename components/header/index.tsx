@@ -3,13 +3,17 @@ import { Logo } from "./logo";
 import { Navigation } from "./navigation";
 import { StyledHeader, StyledHeaderInner } from "./styled";
 
-export const Header = () => {
+interface HeaderProps {
+  categories: string[];
+}
+
+export const Header: React.FC<HeaderProps> = ({ categories }) => {
   return (
     <StyledHeader>
       <div className="container">
         <StyledHeaderInner>
           <Logo />
-          <Navigation />
+          <Navigation categories={categories} />
           <HeaderIcons />
         </StyledHeaderInner>
       </div>

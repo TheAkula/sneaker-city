@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledNavigationItem = styled.a`
+interface StyledNavigationItemProps {
+  active: boolean;
+}
+
+export const StyledNavigationItem = styled.a<StyledNavigationItemProps>`
   color: #000;
   text-decoration: none;
   font-size: 14px;
@@ -15,7 +19,7 @@ export const StyledNavigationItem = styled.a`
     position: absolute;
     bottom: -4px;
     height: 2px;
-    width: 0;
+    width: ${({ active }) => (active ? "100%" : 0)};
     transition: width 0.2s;
     background-color: #000;
     left: 50%;
