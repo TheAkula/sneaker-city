@@ -29,7 +29,7 @@ export const StyledCheckboxContainer = styled.div`
       border: 1px solid ${baseTheme.colors.line};
     }
     :checked::before {
-      border: 1px solid rgb(62, 162, 255);
+      border: 1px solid #3ea2ff;
     }
   }
   label {

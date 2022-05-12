@@ -7,6 +7,7 @@ import {
   setLoading,
   selectLoading,
 } from "../../redux/reducers/productsReducer";
+import { initPrice } from "../../redux/reducers/settingsReducer";
 import { Header } from "../header";
 import { LoadingBackdrop } from "../loadingBackdrop";
 import { Products } from "../products";
@@ -31,6 +32,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     dispatch(setLoading(true));
     dispatch(fetchProducts(category));
   }, [dispatch, category]);
+
+  useEffect(() => {
+    if (products && products.length) {
+      dispatch(initPrice(products));
+    }
+  }, [products, dispatch]);
 
   return (
     <>

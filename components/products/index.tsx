@@ -3,34 +3,15 @@ import { StyledProducts, ProductsGrid } from "./styled";
 import { Product } from "./product";
 import { useRouter } from "next/router";
 import { Footer } from "../footer";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { selectRate } from "../../redux/reducers/settingsReducer";
+import { useSortedProducts } from "../../hooks/useSortedProducts";
 
 interface ProductsProps {
   products: ProductType[];
 }
 
 export const Products: React.FC<ProductsProps> = ({ products }) => {
-  const rate = useAppSelector(selectRate);
+  const prods = useSortedProducts(products);
   const router = useRouter();
-
-  let prods = [...products];
-
-  if (rate) {
-    prods = prods.sort((a, b) => {
-      if (a.rating.rate < b.rating.rate) {
-        return 1;
-      }
-      if (a.rating.rate === b.rating.rate) {
-        return b.rating.count - a.rating.count;
-      }
-      return -1;
-    });
-  }
-
-  if (rate === "bad") {
-    prods = prods.reverse();
-  }
 
   return (
     <StyledProducts>
