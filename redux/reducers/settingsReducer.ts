@@ -1,40 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
+
+export type Rate = "bad" | "best" | null;
 
 interface InitialState {
-  brands: string[];
   priceRange: [number, number];
-  sizes: number[];
+  rate: Rate;
 }
 
 const initialState: InitialState = {
-  brands: [],
   priceRange: [0, 120000],
-  sizes: [],
+  rate: null,
 };
 
 const settingsSlice = createSlice({
   name: "settings",
   initialState: initialState,
   reducers: {
-    setBrands(state, action: PayloadAction<string>) {
-      const brandIndex = state.brands.findIndex((b) => b === action.payload);
-      console.log(brandIndex);
-      if (brandIndex === -1) {
-        state.brands.push(action.payload);
-      } else {
-        state.brands.splice(brandIndex, 1);
-      }
+    setPrice(state, action: PayloadAction<[number, number]>) {
+      state.priceRange = action.payload;
     },
-    setSizes(state, action: PayloadAction<number>) {
-      const sizeIndex = state.sizes.findIndex((b) => b === action.payload);
-      if (sizeIndex === -1) {
-        state.sizes.push(action.payload);
-      } else {
-        delete state.sizes[sizeIndex];
-      }
+    setRate(state, action: PayloadAction<Rate>) {
+      state.rate = action.payload;
     },
   },
 });
 
-export const { setBrands, setSizes } = settingsSlice.actions;
+export const { setPrice, setRate } = settingsSlice.actions;
+
+export const selectRate = (state: RootState) => state.settings.rate;
+
 export default settingsSlice.reducer;

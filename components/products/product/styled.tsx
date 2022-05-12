@@ -6,6 +6,7 @@ export const StyledProduct = styled.a`
   width: 310px;
   overflow: hidden;
   text-decoration: none;
+  padding-bottom: 24px;
 
   .image-container {
     height: 308px;
