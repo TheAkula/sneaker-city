@@ -1,9 +1,13 @@
-import { ProductType } from "../../redux/reducers/productsReducer";
+import {
+  ProductType,
+  selectLoading,
+} from "../../redux/reducers/productsReducer";
 import { StyledProducts, ProductsGrid } from "./styled";
 import { Product } from "./product";
 import { useRouter } from "next/router";
 import { Footer } from "../footer";
 import { useSortedProducts } from "../../hooks/useSortedProducts";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 interface ProductsProps {
   products: ProductType[];
@@ -11,6 +15,7 @@ interface ProductsProps {
 
 export const Products: React.FC<ProductsProps> = ({ products }) => {
   const prods = useSortedProducts(products);
+  const loading = useAppSelector(selectLoading);
   const router = useRouter();
 
   return (
@@ -24,17 +29,19 @@ export const Products: React.FC<ProductsProps> = ({ products }) => {
           : "All Products"}
       </h2>
       <ProductsGrid>
-        {prods.map((prod) => {
-          return (
-            <Product
-              id={prod.id}
-              title={prod.title}
-              imageUrl={prod.image}
-              key={prod.id}
-              price={prod.price}
-            />
-          );
-        })}
+        {!loading
+          ? prods.map((prod) => {
+              return (
+                <Product
+                  id={prod.id}
+                  title={prod.title}
+                  imageUrl={prod.image}
+                  key={prod.id}
+                  price={prod.price}
+                />
+              );
+            })
+          : null}
       </ProductsGrid>
 
       <Footer />

@@ -10,6 +10,7 @@ export const StyledProducts = styled.div`
 
 export const ProductsGrid = styled.div`
   display: grid;
+  min-height: 670px;
   grid-template-columns: repeat(auto-fit, 310px);
   row-gap: 64px;
   column-gap: 24px;
