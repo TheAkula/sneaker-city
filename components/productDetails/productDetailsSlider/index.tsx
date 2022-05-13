@@ -1,5 +1,6 @@
 import Slider from "react-slick";
 import Image from "next/image";
+import { StyledImageContainer, StyledSlide, StyledSlider } from "./styled";
 
 interface SliderProps {
   images: string[];
@@ -7,14 +8,34 @@ interface SliderProps {
 
 export const ProductSlider: React.FC<SliderProps> = ({ images }) => {
   return (
-    <Slider>
+    <>
       {images.length > 1 ? (
-        images.map((img) => {
-          return <Image src={img} alt="" key={img} />;
-        })
+        <StyledSlider infinite={true} slidesToShow={1} dots={true}>
+          {images.map((img, i) => {
+            return (
+              <StyledSlide key={i}>
+                <StyledImageContainer>
+                  <Image
+                    src={img}
+                    alt=""
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="center"
+                  />
+                </StyledImageContainer>
+              </StyledSlide>
+            );
+          })}
+        </StyledSlider>
       ) : images.length === 0 ? (
-        <Image src={images[0]} alt="" />
+        <Image
+          src={images[0]}
+          alt=""
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
+        />
       ) : null}
-    </Slider>
+    </>
   );
 };
