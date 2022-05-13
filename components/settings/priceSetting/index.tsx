@@ -21,20 +21,20 @@ export const PriceSetting = () => {
     dispatch(setPrice(newValue as number[]));
   };
 
-  return price && curPrice ? (
+  return (
     <Setting title="Price range">
       <SliderContainer>
         <CustomSlider
           getAriaLabel={() => "Price range"}
-          max={price[1]}
-          min={price[0]}
-          value={curPrice}
+          max={price ? price[1] : undefined}
+          min={price ? price[0] : undefined}
+          value={curPrice || []}
           onChange={handleChange}
           getAriaValueText={valueText}
-          valueLabelDisplay="on"
+          valueLabelDisplay={price ? "on" : "off"}
           valueLabelFormat={(value) => valueText(value)}
         />
       </SliderContainer>
     </Setting>
-  ) : null;
+  );
 };

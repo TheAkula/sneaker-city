@@ -29,8 +29,11 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setLoading(true));
-    dispatch(fetchProducts(category));
+    if (!loading) {
+      dispatch(setLoading(true));
+
+      dispatch(fetchProducts(category));
+    }
   }, [dispatch, category]);
 
   useEffect(() => {
