@@ -5,11 +5,21 @@ interface SliderDotProps {
   i: number;
   image: string;
   curSlide: number;
+  clicked: (i: number) => void;
 }
 
-export const SliderDot: React.FC<SliderDotProps> = ({ i, image, curSlide }) => {
+export const SliderDot: React.FC<SliderDotProps> = ({
+  i,
+  image,
+  curSlide,
+  clicked,
+}) => {
+  const onClickedHandler = () => {
+    clicked(i);
+  };
+
   return (
-    <StyledSliderDot active={i === curSlide}>
+    <StyledSliderDot active={i === curSlide} onClick={onClickedHandler}>
       <div className="content">
         <div className="image-container">
           <Image

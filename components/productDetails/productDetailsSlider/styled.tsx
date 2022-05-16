@@ -10,7 +10,7 @@ export const StyledSliderWrapper = styled.div`
     left: 64px;
     top: 96px;
     z-index: ${baseTheme.zIndex.sliderInfo};
-    max-width: 270px;
+    max-width: 250px;
 
     h1 {
       font-size: 36px;
@@ -21,6 +21,14 @@ export const StyledSliderWrapper = styled.div`
       font-size: 18px;
       color: ${baseTheme.colors.text2};
     }
+  }
+
+  .add-to-chosen {
+    position: absolute;
+    right: 64px;
+    top: 96px;
+    cursor: pointer;
+    z-index: ${baseTheme.zIndex.sliderInfo};
   }
 `;
 

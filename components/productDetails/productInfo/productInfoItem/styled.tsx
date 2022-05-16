@@ -36,6 +36,6 @@ export const StyledDescriptionItemHead = styled.div`
 export const ArrowImageContainer = styled.div<ArrowImageContainerProps>`
   width: 16px;
   height: 16px;
-  transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0)")};
+  transform: ${({ active }) => (active ? "rotate(0)" : "rotate(180deg)")};
   transition: transform 0.3s;
 `;

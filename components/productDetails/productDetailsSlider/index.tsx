@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { Settings } from "react-slick";
+import Slider, { Settings } from "react-slick";
 import { SliderArrow } from "./sliderArrow";
 import { SliderDot } from "./sliderDot";
 import {
@@ -10,19 +10,40 @@ import {
   StyledSliderWrapper,
 } from "./styled";
 import { SliderDots } from "./sliderDots";
+import { ChosenImage } from "../../svgComponents/chosenIcon";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import {
+  selectChosen,
+  toggleChosen,
+} from "../../../redux/reducers/chosenReducer";
+import { ChosenFilledImage } from "../../svgComponents/chosenFilledIcon";
 
 interface SliderProps {
   images: string[];
   title: string;
   price: number;
+  id: number;
 }
 
 export const ProductSlider: React.FC<SliderProps> = ({
   images,
   title,
   price,
+  id,
 }) => {
   const [curSlide, setCurSlide] = useState(0);
+  const chosen = useAppSelector(selectChosen);
+  const sliderRef = useRef<null | Slider>(null);
+
+  const dispatch = useAppDispatch();
+
+  const onDotClicked = (i: number) => {
+    sliderRef.current?.slickGoTo(i);
+  };
+
+  const onChoose = () => {
+    dispatch(toggleChosen(id));
+  };
 
   const sliderSettings: Settings = {
     infinite: true,
@@ -32,13 +53,25 @@ export const ProductSlider: React.FC<SliderProps> = ({
     nextArrow: <SliderArrow type="right" />,
     prevArrow: <SliderArrow type="left" />,
     customPaging: (i) => {
-      return <SliderDot i={i} image={images[i]} curSlide={curSlide} />;
+      return (
+        <SliderDot
+          i={i}
+          image={images[i]}
+          curSlide={curSlide}
+          clicked={onDotClicked}
+        />
+      );
     },
     afterChange: (cs) => {
       setCurSlide(cs);
     },
     appendDots: (dots) => <SliderDots dots={dots} />,
   };
+
+  let isChosen = false;
+  if (chosen) {
+    isChosen = chosen.includes(id);
+  }
 
   return (
     <>
@@ -48,7 +81,10 @@ export const ProductSlider: React.FC<SliderProps> = ({
             <h1>{title}</h1>
             <p>{price}RWF</p>
           </div>
-          <StyledSlider {...sliderSettings}>
+          <div className="add-to-chosen" onClick={onChoose}>
+            {isChosen ? <ChosenFilledImage /> : <ChosenImage />}
+          </div>
+          <StyledSlider {...sliderSettings} ref={sliderRef}>
             {images.map((img, i) => {
               return (
                 <StyledSlide key={i}>

@@ -9,7 +9,9 @@ export const StyledSliderDot = styled.div<StyledSliderDotProps>`
   height: 80px;
   border-radius: 8px;
   background-color: #fff;
-
+  box-shadow: ${({ active }) =>
+    active ? "0px 2px 4px rgba(0, 0, 0, 0.16)" : "none"};
+  cursor: pointer;
   padding: 4px;
   .content {
     border-radius: 6px;
