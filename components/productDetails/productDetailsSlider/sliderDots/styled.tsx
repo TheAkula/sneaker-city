@@ -4,7 +4,8 @@ export const StyledSliderDots = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
-  margin: 0 auto;
+  justify-content: center;
+  margin-top: 64px;
 
   li {
     list-style: none;

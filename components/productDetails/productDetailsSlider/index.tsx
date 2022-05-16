@@ -3,14 +3,25 @@ import Image from "next/image";
 import { Settings } from "react-slick";
 import { SliderArrow } from "./sliderArrow";
 import { SliderDot } from "./sliderDot";
-import { StyledImageContainer, StyledSlide, StyledSlider } from "./styled";
+import {
+  StyledImageContainer,
+  StyledSlide,
+  StyledSlider,
+  StyledSliderWrapper,
+} from "./styled";
 import { SliderDots } from "./sliderDots";
 
 interface SliderProps {
   images: string[];
+  title: string;
+  price: number;
 }
 
-export const ProductSlider: React.FC<SliderProps> = ({ images }) => {
+export const ProductSlider: React.FC<SliderProps> = ({
+  images,
+  title,
+  price,
+}) => {
   const [curSlide, setCurSlide] = useState(0);
 
   const sliderSettings: Settings = {
@@ -32,23 +43,29 @@ export const ProductSlider: React.FC<SliderProps> = ({ images }) => {
   return (
     <>
       {images.length > 1 ? (
-        <StyledSlider {...sliderSettings}>
-          {images.map((img, i) => {
-            return (
-              <StyledSlide key={i}>
-                <StyledImageContainer>
-                  <Image
-                    src={img}
-                    alt=""
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center"
-                  />
-                </StyledImageContainer>
-              </StyledSlide>
-            );
-          })}
-        </StyledSlider>
+        <StyledSliderWrapper>
+          <div className="slider__info">
+            <h1>{title}</h1>
+            <p>{price}RWF</p>
+          </div>
+          <StyledSlider {...sliderSettings}>
+            {images.map((img, i) => {
+              return (
+                <StyledSlide key={i}>
+                  <StyledImageContainer>
+                    <Image
+                      src={img}
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
+                  </StyledImageContainer>
+                </StyledSlide>
+              );
+            })}
+          </StyledSlider>
+        </StyledSliderWrapper>
       ) : images.length === 0 ? (
         <Image
           src={images[0]}

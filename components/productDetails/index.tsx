@@ -40,6 +40,8 @@ export const ProductDetails: React.FC = () => {
     <div className="container">
       <StyledProductDetails>
         <ProductSlider
+          title={product.title}
+          price={product.price}
           images={Array.from({ length: 4 }).map((_) => product!.image)}
         />
         <ProductInfo product={product} />

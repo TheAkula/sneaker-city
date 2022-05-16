@@ -1,4 +1,5 @@
 import { ProductType } from "../../../redux/reducers/productsReducer";
+import { AddToCart } from "./addToCart";
 import { ProductInfoItem } from "./productInfoItem";
 import { StyledProductInfo } from "./styled";
 
@@ -12,6 +13,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       <ProductInfoItem title="Description">
         {product.description}
       </ProductInfoItem>
+      <AddToCart id={product.id} />
     </StyledProductInfo>
   );
 };
