@@ -2,8 +2,8 @@ import { NextPage } from "next";
 import { ProductDetails } from "../../components/productDetails";
 import { ProductType } from "../../redux/reducers/productsReducer";
 
-const Details: NextPage<ProductType> = (props) => {
-  return <ProductDetails {...props} />;
+const Details: NextPage<ProductType> = () => {
+  return <ProductDetails />;
 };
 
 // export const getServerSideProps = async () => {

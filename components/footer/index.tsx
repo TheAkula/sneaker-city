@@ -7,28 +7,24 @@ export const Footer = () => {
   return (
     <StyledFooter>
       <div className="footer__wrapper">
-        <div className="footer__inner">
-          <div className="footer__menu">
-            <div className="footer__icons">
-              <p>Don’t missout on once-in-a-while-deals:</p>
-              <a className="footer__icon" href="#">
-                <TwitterImage />
-              </a>
-              <a className="footer__icon" href="#">
-                <InstImage />
-              </a>
-              <a className="footer__icon" href="#">
-                <FacebookImage />
-              </a>
-            </div>
-            <div className="footer__box">
-              <div className="support-line">
-                <span>Support line:</span>
-                <span>+250 788 467 808</span>
-              </div>
-              <span>Copyright 2021 © Sneaker City ltd</span>
-            </div>
+        <div className="footer__icons">
+          <p>Don’t missout on once-in-a-while-deals:</p>
+          <a className="footer__icon" href="#">
+            <TwitterImage />
+          </a>
+          <a className="footer__icon" href="#">
+            <InstImage />
+          </a>
+          <a className="footer__icon" href="#">
+            <FacebookImage />
+          </a>
+        </div>
+        <div className="footer__box">
+          <div className="support-line">
+            <span>Support line:</span>
+            <span>+250 788 467 808</span>
           </div>
+          <span>Copyright 2021 © Sneaker City ltd</span>
         </div>
       </div>
     </StyledFooter>

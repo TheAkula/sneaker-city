@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
+import { useEffect } from "react";
 import { MainLayout } from "../components/mainLayout";
-import { ProductType } from "../redux/reducers/productsReducer";
 
 interface HomeProps {
   categories: string[];

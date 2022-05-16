@@ -3,27 +3,17 @@ import { baseTheme } from "../../styles/baseTheme";
 
 export const StyledFooter = styled.footer`
   height: 160px;
-  display: flex;
-  border-top: 1px solid ${baseTheme.colors.line};
-  align-items: center;
   color: ${baseTheme.colors.text2};
+  border-top: 1px solid ${baseTheme.colors.line};
+  display: flex;
+  align-items: center;
 
   .footer__wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  .footer__inner {
-    display: flex;
-  }
-
-  .footer__menu {
-    display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
     column-gap: 100px;
+    display: flex;
     row-gap: 14px;
+    align-items: center;
   }
 
   .footer__icons {
@@ -38,9 +28,10 @@ export const StyledFooter = styled.footer`
 
   .footer__box {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     min-width: 770px;
     width: 100%;
-    justify-content: space-between;
   }
 
   .footer__icon {

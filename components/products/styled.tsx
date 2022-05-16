@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledProducts = styled.div`
-  h2 {
+  h1 {
     font-size: 24px;
     font-weight: bold;
     margin: 32px 0;

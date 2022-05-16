@@ -20,14 +20,14 @@ export const Products: React.FC<ProductsProps> = ({ products }) => {
 
   return (
     <StyledProducts>
-      <h2>
+      <h1>
         {router.query.category
           ? (
               (router.query.category[0].toUpperCase() +
                 router.query.category.slice(1)) as string
             ).replace(/%20/g, " ")
           : "All Products"}
-      </h2>
+      </h1>
       <ProductsGrid>
         {!loading
           ? prods.map((prod) => {
