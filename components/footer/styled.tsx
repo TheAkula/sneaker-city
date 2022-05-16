@@ -3,28 +3,9 @@ import { baseTheme } from "../../styles/baseTheme";
 
 export const StyledFooter = styled.footer`
   height: 160px;
-  display: flex;
-  border-top: 1px solid ${baseTheme.colors.line};
-  align-items: center;
   color: ${baseTheme.colors.text2};
-
-  .footer__wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  .footer__inner {
-    display: flex;
-  }
-
-  .footer__menu {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    column-gap: 100px;
-    row-gap: 14px;
-  }
+  border-top: 1px solid ${baseTheme.colors.line};
+  display: grid;
 
   .footer__icons {
     display: flex;
@@ -38,9 +19,10 @@ export const StyledFooter = styled.footer`
 
   .footer__box {
     display: flex;
-    min-width: 770px;
-    width: 100%;
     justify-content: space-between;
+    align-items: center;
+    min-width: 770px;
+    max-width: 100%;
   }
 
   .footer__icon {

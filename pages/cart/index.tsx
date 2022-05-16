@@ -1,4 +1,5 @@
 import { NextPage, GetStaticProps } from "next";
+import { Footer } from "../../components/footer";
 import { Header } from "../../components/header";
 import { ShoppingCart } from "../../components/shoppingCart";
 
@@ -9,8 +10,10 @@ interface CartPage {
 const Cart: NextPage<CartPage> = ({ categories }) => {
   return (
     <div>
-      <Header categories={categories} />
-      <ShoppingCart />
+      <div className="container">
+        <Header categories={categories} />
+        <ShoppingCart />
+      </div>
     </div>
   );
 };

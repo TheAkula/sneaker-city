@@ -33,8 +33,8 @@ export const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
       <div className="image-wrapper">
         <ImageContainer image={image} />
         <div>
-          <h4>{title}</h4>
-          <span>{price}</span>
+          <h4>{title.slice(0, 20) + "..."}</h4>
+          <span>{price}RWF</span>
         </div>
       </div>
       <Counter
@@ -42,7 +42,7 @@ export const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
         increase={increaseCount}
         decrease={decreaseCount}
       />
-      <span className="price">{price}</span>
+      <span className="price">{price * quantity}RWF</span>
     </StyledShoppingCartItem>
   );
 };
