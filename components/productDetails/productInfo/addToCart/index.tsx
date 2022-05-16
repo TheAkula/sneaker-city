@@ -1,7 +1,6 @@
 import { Button } from "../../../UI/button";
 import { useState } from "react";
-import { MinusImage } from "../../../svgComponents/minus";
-import { PlusImage } from "../../../svgComponents/plus";
+import { Counter } from "../../../counter";
 import { StyledAddToCart } from "./styled";
 import { useAppDispatch } from "../../../../hooks/reduxHooks";
 import { addToCart } from "../../../../redux/reducers/cartReducer";
@@ -33,17 +32,7 @@ export const AddToCart: React.FC<AddToCartProps> = ({ id }) => {
 
   return (
     <StyledAddToCart>
-      <div className="counter">
-        <div className="counter__control" onClick={subtractCount}>
-          <MinusImage />
-        </div>
-        <div className="counter__output">
-          <span>{count}</span>
-        </div>
-        <div className="counter__control" onClick={addCount}>
-          <PlusImage />
-        </div>
-      </div>
+      <Counter curValue={count} increase={addCount} decrease={subtractCount} />
       <Button clicked={onAddToCart} type="button">
         Add to cart
       </Button>
