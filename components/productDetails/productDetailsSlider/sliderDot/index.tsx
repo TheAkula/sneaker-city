@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ImageContainer } from "../../../imageContainer";
 import { StyledSliderDot } from "./styled";
 
 interface SliderDotProps {
@@ -19,18 +19,8 @@ export const SliderDot: React.FC<SliderDotProps> = ({
   };
 
   return (
-    <StyledSliderDot active={i === curSlide} onClick={onClickedHandler}>
-      <div className="content">
-        <div className="image-container">
-          <Image
-            src={image}
-            alt=""
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center"
-          />
-        </div>
-      </div>
+    <StyledSliderDot onClick={onClickedHandler}>
+      <ImageContainer image={image} active={i === curSlide} />
     </StyledSliderDot>
   );
 };
