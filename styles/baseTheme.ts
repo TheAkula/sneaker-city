@@ -8,5 +8,6 @@ export const baseTheme = {
   zIndex: {
     backdrop: 1000,
     spinner: 1100,
+    sliderArrow: 100,
   },
 };

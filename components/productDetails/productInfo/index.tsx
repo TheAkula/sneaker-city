@@ -1,5 +1,6 @@
 import { ProductType } from "../../../redux/reducers/productsReducer";
 import { ProductInfoItem } from "./productInfoItem";
+import { StyledProductInfo } from "./styled";
 
 interface ProductInfoProps {
   product: ProductType;
@@ -7,6 +8,10 @@ interface ProductInfoProps {
 
 export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   return (
-    <ProductInfoItem title="Description">{product.description}</ProductInfoItem>
+    <StyledProductInfo>
+      <ProductInfoItem title="Description">
+        {product.description}
+      </ProductInfoItem>
+    </StyledProductInfo>
   );
 };

@@ -4,7 +4,7 @@ import {
   StyledDescriptionItemHead,
   ArrowImageContainer,
 } from "./styled";
-import { ArrowImage } from "../../../svgComponents/arrowUp";
+import { ArrowUpImage } from "../../../svgComponents/arrowUp";
 
 interface ProductInfoItemProps {
   title: string;
@@ -26,7 +26,7 @@ export const ProductInfoItem: React.FC<ProductInfoItemProps> = ({
       <StyledDescriptionItemHead onClick={onClickedHandler}>
         <h3>{title}</h3>
         <ArrowImageContainer active={show}>
-          <ArrowImage />
+          <ArrowUpImage />
         </ArrowImageContainer>
       </StyledDescriptionItemHead>
       {show && <p className="content">{children}</p>}

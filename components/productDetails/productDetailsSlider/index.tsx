@@ -1,16 +1,38 @@
-import Slider from "react-slick";
+import { useState } from "react";
 import Image from "next/image";
+import { Settings } from "react-slick";
+import { SliderArrow } from "./sliderArrow";
+import { SliderDot } from "./sliderDot";
 import { StyledImageContainer, StyledSlide, StyledSlider } from "./styled";
+import { SliderDots } from "./sliderDots";
 
 interface SliderProps {
   images: string[];
 }
 
 export const ProductSlider: React.FC<SliderProps> = ({ images }) => {
+  const [curSlide, setCurSlide] = useState(0);
+
+  const sliderSettings: Settings = {
+    infinite: true,
+    slidesToShow: 1,
+    dots: true,
+    arrows: true,
+    nextArrow: <SliderArrow type="right" />,
+    prevArrow: <SliderArrow type="left" />,
+    customPaging: (i) => {
+      return <SliderDot i={i} image={images[i]} curSlide={curSlide} />;
+    },
+    afterChange: (cs) => {
+      setCurSlide(cs);
+    },
+    appendDots: (dots) => <SliderDots dots={dots} />,
+  };
+
   return (
     <>
       {images.length > 1 ? (
-        <StyledSlider infinite={true} slidesToShow={1} dots={true}>
+        <StyledSlider {...sliderSettings}>
           {images.map((img, i) => {
             return (
               <StyledSlide key={i}>

@@ -9,6 +9,7 @@ export const StyledDescriptionItem = styled.div`
   border-bottom: 1px solid ${baseTheme.colors.line};
   padding-bottom: 32px;
   padding-top: 32px;
+  width: 100%;
 
   h3 {
     font-size: 16px;
