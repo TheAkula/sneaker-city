@@ -34,7 +34,7 @@ export const StyledSliderWrapper = styled.div`
 
 export const StyledSlider = styled(Slider)`
   width: 944px;
-  padding-top: 96px;
+  padding-top: 220px;
   height: 820px;
   background-color: ${baseTheme.colors.lightGrayBg};
 `;
@@ -42,8 +42,8 @@ export const StyledSlider = styled(Slider)`
 export const StyledSlide = styled.div``;
 
 export const StyledImageContainer = styled.div`
-  width: 584px;
-  height: 456px;
+  width: 300px;
+  height: 300px;
   position: relative;
   margin: 0 auto;
 `;

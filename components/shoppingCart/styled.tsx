@@ -10,12 +10,17 @@ export const StyledShoppingCart = styled.div`
     grid-template-columns: 880px 1fr;
     column-gap: 64px;
     padding-top: 32px;
-    padding-bottom: 260px;
+    padding-bottom: 100px;
 
     h1 {
       font-size: 24px;
       margin-bottom: 21px;
     }
+  }
+
+  .cart__items {
+    height: 400px;
+    overflow: auto;
   }
 `;
 

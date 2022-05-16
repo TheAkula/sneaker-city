@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import React from "react";
 
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import {
@@ -19,22 +20,16 @@ interface MainLayoutProps {
   category?: string;
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({
-  categories,
-  category,
-}) => {
+const Main: React.FC<MainLayoutProps> = ({ categories, category }) => {
   const products = useAppSelector(selectProducts);
   const loading = useAppSelector(selectLoading);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!loading) {
-      dispatch(setLoading(true));
-
-      dispatch(fetchProducts(category));
-    }
-  }, [dispatch, category]);
+    dispatch(setLoading(true));
+    dispatch(fetchProducts(category));
+  }, [category, dispatch]);
 
   useEffect(() => {
     if (products && products.length) {
@@ -59,3 +54,5 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     </>
   );
 };
+
+export const MainLayout = React.memo(Main);

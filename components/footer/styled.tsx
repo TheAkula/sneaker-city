@@ -5,7 +5,16 @@ export const StyledFooter = styled.footer`
   height: 160px;
   color: ${baseTheme.colors.text2};
   border-top: 1px solid ${baseTheme.colors.line};
-  display: grid;
+  display: flex;
+  align-items: center;
+
+  .footer__wrapper {
+    flex-wrap: wrap;
+    column-gap: 100px;
+    display: flex;
+    row-gap: 14px;
+    align-items: center;
+  }
 
   .footer__icons {
     display: flex;
@@ -22,7 +31,7 @@ export const StyledFooter = styled.footer`
     justify-content: space-between;
     align-items: center;
     min-width: 770px;
-    max-width: 100%;
+    width: 100%;
   }
 
   .footer__icon {

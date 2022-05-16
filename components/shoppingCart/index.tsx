@@ -9,20 +9,26 @@ import { OrderSummary } from "./styled";
 import { Footer } from "../footer";
 
 export const ShoppingCart = () => {
+  const [loading, setLoading] = useState(false);
   const cartItems = useAppSelector(selectCart);
   const [products, setProducts] = useState<ProductType[]>();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => {
-        return res.json();
-      })
-      .then((prods) => {
-        setProducts(prods);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (cartItems && cartItems.length) {
+      setLoading(true);
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => {
+          return res.json();
+        })
+        .then((prods) => {
+          setProducts(prods);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
+    }
   }, []);
 
   const clickedHandler = () => {};
@@ -45,20 +51,22 @@ export const ShoppingCart = () => {
       <div className="cart__inner">
         <div>
           <h1>Your shopping cart</h1>
-          {cartProducts ? (
-            cartProducts.map((cp) => {
-              return <ShoppingCartItem key={cp.id} {...cp} />;
-            })
-          ) : (
-            <LoadingBackdrop />
-          )}
+          <div className="cart__items">
+            {cartProducts ? (
+              cartProducts.map((cp) => {
+                return <ShoppingCartItem key={cp.id} {...cp} />;
+              })
+            ) : loading ? (
+              <LoadingBackdrop />
+            ) : null}
+          </div>
         </div>
         <OrderSummary>
           <h2>Order Summary</h2>
           <ul>
             <li>
               <span className="li__title">Sub total</span>
-              <span className="li__price">{totalSummary}RWF</span>
+              <span className="li__price">{totalSummary.toFixed(2)}RWF</span>
             </li>
             <li>
               <span className="li__title">Delivey fee</span>
@@ -66,7 +74,9 @@ export const ShoppingCart = () => {
             </li>
           </ul>
           <div className="line"></div>
-          <div className="total-price li__price">{totalSummary}RWF</div>
+          <div className="total-price li__price">
+            {totalSummary.toFixed(2)}RWF
+          </div>
           <StyledButton type="button" clicked={clickedHandler}>
             Proceed to checkout
           </StyledButton>

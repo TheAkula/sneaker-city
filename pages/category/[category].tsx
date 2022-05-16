@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useEffect } from "react";
 import { MainLayout } from "../../components/mainLayout";
 
 interface CategoryProps {

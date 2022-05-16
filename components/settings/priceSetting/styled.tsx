@@ -1,5 +1,6 @@
 import { Slider } from "@mui/material";
 import styled from "styled-components";
+import { baseTheme } from "../../../styles/baseTheme";
 
 export const SliderContainer = styled.div`
   width: 224px;
@@ -22,5 +23,13 @@ export const CustomSlider = styled(Slider)`
     color: #000;
     top: calc(100% + 25px);
     background-color: unset;
+  }
+
+  .MuiSlider-track {
+    color: #000;
+  }
+
+  .MuiSlider-rail {
+    color: ${baseTheme.colors.line};
   }
 `;
