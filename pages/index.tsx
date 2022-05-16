@@ -1,16 +1,23 @@
-import type { NextPage } from "next";
-import { Header } from "../components/header";
-import { NewArrivalsSettings } from "../components/newArrivalsSettings";
+import type { GetStaticProps, NextPage } from "next";
+import { MainLayout } from "../components/mainLayout";
+import { ProductType } from "../redux/reducers/productsReducer";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      <Header />
-      <main>
-        <NewArrivalsSettings />
-      </main>
-    </div>
-  );
+interface HomeProps {
+  categories: string[];
+}
+
+const Home: NextPage<HomeProps> = ({ categories }) => {
+  return <MainLayout categories={categories} />;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch("https://fakestoreapi.com/products/categories");
+  const categories = await res.json();
+  return {
+    props: {
+      categories: categories,
+    },
+  };
 };
 
 export default Home;

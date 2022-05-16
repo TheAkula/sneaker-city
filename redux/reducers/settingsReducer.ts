@@ -1,40 +1,44 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
+import { ProductType } from "./productsReducer";
+
+export type Rate = "bad" | "best" | null;
 
 interface InitialState {
-  brands: string[];
-  priceRange: [number, number];
-  sizes: number[];
+  priceRange: number[] | null;
+  rate: Rate;
+  curPrice: number[] | null;
 }
 
 const initialState: InitialState = {
-  brands: [],
-  priceRange: [0, 120000],
-  sizes: [],
+  priceRange: null,
+  rate: null,
+  curPrice: null,
 };
 
 const settingsSlice = createSlice({
   name: "settings",
   initialState: initialState,
   reducers: {
-    setBrands(state, action: PayloadAction<string>) {
-      const brandIndex = state.brands.findIndex((b) => b === action.payload);
-      console.log(brandIndex);
-      if (brandIndex === -1) {
-        state.brands.push(action.payload);
-      } else {
-        state.brands.splice(brandIndex, 1);
-      }
+    setPrice(state, action: PayloadAction<InitialState["curPrice"]>) {
+      state.curPrice = action.payload;
     },
-    setSizes(state, action: PayloadAction<number>) {
-      const sizeIndex = state.sizes.findIndex((b) => b === action.payload);
-      if (sizeIndex === -1) {
-        state.sizes.push(action.payload);
-      } else {
-        delete state.sizes[sizeIndex];
-      }
+    initPrice(state, action: PayloadAction<ProductType[]>) {
+      const sorted = [...action.payload].sort((a, b) => a.price - b.price);
+      const priceRange = [sorted[0].price, sorted.at(-1)!.price];
+      state.priceRange = priceRange;
+      state.curPrice = priceRange;
+    },
+    setRate(state, action: PayloadAction<Rate>) {
+      state.rate = action.payload;
     },
   },
 });
 
-export const { setBrands, setSizes } = settingsSlice.actions;
+export const { setPrice, setRate, initPrice } = settingsSlice.actions;
+
+export const selectRate = (state: RootState) => state.settings.rate;
+export const selectPrice = (state: RootState) => state.settings.priceRange;
+export const selectCurPrice = (state: RootState) => state.settings.curPrice;
+
 export default settingsSlice.reducer;

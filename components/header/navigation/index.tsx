@@ -1,14 +1,22 @@
 import { StyledNavigation } from "./styled";
 import { NavigationItem } from "./navigationItem";
 
-export const Navigation = () => {
+interface NavigationProps {
+  categories: string[];
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ categories }) => {
   return (
     <nav>
       <StyledNavigation>
-        <NavigationItem path="/new-arrivals">New Arrivals</NavigationItem>
-        <NavigationItem path="/men">Men</NavigationItem>
-        <NavigationItem path="/women">Women</NavigationItem>
-        <NavigationItem path="/kids">Kids</NavigationItem>
+        <NavigationItem path="/">All Products</NavigationItem>
+        {categories.map((category) => {
+          return (
+            <NavigationItem key={category} path={"/category/" + category}>
+              {category[0].toUpperCase() + category.slice(1)}
+            </NavigationItem>
+          );
+        })}
       </StyledNavigation>
     </nav>
   );
